@@ -1,0 +1,41 @@
+        <%= form_with(model: departamento) do |form| %>
+            <% if departamento.errors.any? %>
+                <div id="error_explanation">
+                <h2><%= pluralize(departamento.errors.count, "error") %> No se pudo crear el departamento: </h2>
+                <ul>
+                    <% departamento.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                    <% end %>
+                </ul>
+                </div>
+            <% end %>
+
+            <div>
+                <%= form.label :numero, class: "form-label"%>
+                <%= form.text_field :numero, class: "form-control"%>
+            </div>
+
+            <% if departamento.edificio %>
+                <div>
+                <%= form.label :edificio_id, "ID Edificio", class: "form-label" %>
+                <%= form.text_field :edificio_id, id: "disableTextInput", class: "form-control", disabled: :true %>
+                </div>
+            <% else %>
+                <div type="hidden"></div>
+            <% end %>
+
+            <div>
+                <%= form.label :edificio_id, class: "form-label"%>
+                <% if departamento.edificio %>
+                    <%= form.select(:edificio_id, options_from_collection_for_select(edificios, :id, :nombre, departamento.edificio_id), { }, {class: "form-select"})%>
+            <% else %>
+                    <%= form.select(:edificio_id, options_from_collection_for_select(edificios, :id, :nombre), {include_blank: "Elige un edificio"}, {class: "form-select"})%>
+            <% end %>
+            
+            </div>
+
+            <div class="mt-5">
+                <%= form.submit nil, class: "btn btn-primary"%>
+            </div>
+
+        <% end %>

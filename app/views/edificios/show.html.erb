@@ -1,0 +1,30 @@
+<div class= "container mt-5">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+                <h5 class="card-title">Edificio: <%= @edificio.nombre %></h5> 
+                <h6 class="card-subtitle mb-2 text-muted">ID: <%= @edificio.id %></h6> 
+                <p class="card-text">Dirección: <%= @edificio.direccion %></p> 
+                <a href="#" class="card-link">Ciudad: <%= @edificio.ciudad %></a>   
+            <div>
+                <%= link_to 'Lista Edificios', edificios_path, class: "btn btn-primary" %>
+                <%= link_to 'Crear Edificios', new_edificio_path, class: "btn btn-primary" %>
+            </div>
+        </div>
+    </div>
+    <h3>Departamentos</h3>
+<table class= "table table-bordered">
+  <thead>
+    <tr>
+      <th>Numero</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @edificio.departamento.each do |depto|%>
+      <tr>
+        <td><%= depto.numero %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+</div>
+

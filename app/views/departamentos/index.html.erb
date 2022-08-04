@@ -1,0 +1,32 @@
+<h1 class="mb-5">Lista de Departamentos - Hola desde el index departamentoss</h1>
+
+<table class= "table table-bordered">
+    <thead>
+        <tr>
+            <th>Id Departamento</th>
+            <th>Número</th>
+            <th>ID Edificio</th>
+            <th>Nombre Edificio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%@departamentos.each do |departamento| %>
+        <tr>
+            <td><%= departamento.id %></td>
+            <td><%= departamento.numero %></td>
+            <td><%= departamento.edificio_id %></td>
+            <td><%= departamento.edificio.nombre %></td>
+            <td><%= departamento.edificio.ciudad %></td>
+            <td>
+                <%= link_to "show", departamento, class: "btn btn-primary" %>
+                <%= link_to "editar", edit_departamento_path(departamento), class: "btn btn-primary" %>
+                <%= button_to "Eliminar", departamento, method: :delete, data: {confirm: "Seguro?"}, class:"btn btn-danger" %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>  
+
+
+<%= link_to "Crear departamento Nuevo", new_departamento_path, class:"btn btn-primary" %>
